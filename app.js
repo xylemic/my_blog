@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const Blog = require('./models/blogs');
+const port = process.env.PORT || 8000;
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -9,8 +10,8 @@ app.set('view engine', 'ejs');
 // connect to mongoDB
 const dbURL = 'mongodb+srv://danielbobbyjohnson:svqP9oFek7zb7iIV@nodeproject.i0jxc.mongodb.net/node-project?retryWrites=true&w=majority&appName=nodeProject';
 mongoose.connect(dbURL)
-.then((result) => app.listen(8000, () => {
-  console.log('listening on port 8000');
+.then((result) => app.listen(port, () => {
+  console.log(`listening on port ${port}`);
   console.log('connected to database');
 }))
  .catch((error) => console.log('error connecting to db', error.message));
